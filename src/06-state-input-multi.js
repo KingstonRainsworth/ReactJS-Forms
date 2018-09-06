@@ -1,30 +1,38 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 const content = document.createElement('div');
 document.body.appendChild(content);
 
 module.exports = class extends React.Component {
   static displayName = "06-state-input-multi";
-
-  state = {
-    fields: {
-      name: '',
-      email: ''
-    },
-    people: [],
+  static propTypes = {
+    fields: PropTypes.object.isRequired,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    people: PropTypes.array.isRequired,
+  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      fields: {
+        name: '',
+        email: '',
+      },
+      people: [],
+    };
   };
 
   onFormSubmit = (evt) => {
-    const people = [
+    const peoples = [
       ...this.state.people,
       this.state.fields,
     ];
-    this.setState({ 
-      people, 
+    this.setState({
+      people: peoples,
       fields: {
         name: '',
         email: ''
-      } 
+      }
     });
     evt.preventDefault();
   };
@@ -32,7 +40,7 @@ module.exports = class extends React.Component {
   onInputChange = (evt) => {
     const fields = this.state.fields;
     fields[evt.target.name] = evt.target.value;
-    this.setState({ fields });
+    this.setState({ fields : fields });
   };
 
   render() {

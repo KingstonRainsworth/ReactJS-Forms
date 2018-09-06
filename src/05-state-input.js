@@ -24,6 +24,8 @@ module.exports = class extends React.Component {
   };
 
   render() {
+  //onChange record any change in text field
+  //onSubmit record formalization of change by either enter or button
     return (
       <div>
         <h1>Sign Up Sheet</h1>
